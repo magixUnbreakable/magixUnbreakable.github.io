@@ -65,25 +65,27 @@ For more details see [GitHub Flavored Markdown](https://guides.github.com/featur
 	- for this hash I'm gona use _hashcat_
 	- stored this hash in simple text file on my attack machine:
 	
-`
+```
 $ cat hash1.hash 
 $2a$06$7yoU3Ng8dHTXphAg913cyO6Bjs3K5lBnwq5FJyA6d01pMSrddr1ZG
-`
+```
 	- we know from previous tasks that "$2a$" is bcrypt()
 	- let's indentifie the hash mode we would liek to use
-`
+```
 $ hashcat -h | grep bcrypt
 3200 | bcrypt $2*$, Blowfish (Unix)                     | Operating System
-`
-	- we got only 1 option, let's start the hashcat
+```
+- we got only 1 option, let's start the hashcat
 
-`$ hashcat -m 3200 hash1.hash /usr/share/wordlists/rockyou.txt`
+```
+$ hashcat -m 3200 hash1.hash /usr/share/wordlists/rockyou.txt
+```
 
-	- -m 								= hash type
-	- hash1.hash  						= file where i stored the hash
-	- /usr/share/wordlists/rockyou.txt	= my stored rocklist.txt
+- -m 					= hash type
+- hash1.hash  				= file where i stored the hash
+- /usr/share/wordlists/rockyou.txt	= my stored rocklist.txt
 
-`
+```
 $2a$06$7yoU3Ng8dHTXphAg913cyO6Bjs3K5lBnwq5FJyA6d01pMSrddr1ZG:*****
                                                  
 Session..........: hashcat
@@ -92,7 +94,7 @@ Hash.Name........: bcrypt $2*$, Blowfish (Unix)
 Hash.Target......: $2a$06$7yoU3Ng8dHTXphAg913cyO6Bjs3K5lBnwq5FJyA6d01p...ddr1ZG
 Time.Started.....: Mon Nov  1 04:01:02 2021 (17 secs)
 Time.Estimated...: Mon Nov  1 04:01:19 2021 (0 secs)
-`
+```
 
 **2. Crack this hash: 9eb7ee7f551d2f0ac684981bd1f1e2fa4a37590199636753efe614d4db30e8e1	hint: SHA2-256**
 	- 1st let's check online tools for crack hashes i.e.: [crackstation](https://crackstation.net)
@@ -101,7 +103,8 @@ Time.Estimated...: Mon Nov  1 04:01:19 2021 (0 secs)
 **3. Crack this hash: $6$GQXVvW4EuM$ehD6jWiMsfNorxy5SINsgdlxmAEl3.yif0/c3NqzGLa0P.S7KRDYjycw5bnYkF5ZtB8wQy8KnskuWQS3Yr1wQ0**
 	- start of the hash $6$ indicate that this is SHA 512
 	- using hashcat, we find mode to use
-`
+
+```
 hashcat -h | grep sha512
   21000 | BitShares v0.x - sha512(sha512_bin(pass))        | Raw Hash
    1710 | sha512($pass.$salt)                              | Raw Hash, Salted and/or Iterated
@@ -112,9 +115,11 @@ hashcat -h | grep sha512
    6500 | AIX {ssha512}                                    | Operating System
    1800 | sha512crypt $6$, SHA512 (Unix)                   | Operating System
   21600 | Web2py pbkdf2-sha512                             | Framework
-`
-	- now we got mode (1800), lets create text file with given hash and start hashcat:
-`
+```
+
+- now we got mode (1800), lets create text file with given hash and start hashcat:
+
+```
 hashcat -m 1800 hash3.hash /usr/share/wordlists/rockyou.txt
 
 $6$GQXVvW4EuM$ehD6jWiMsfNorxy5SINsgdlxmAEl3.yif0/c3NqzGLa0P.S7KRDYjycw5bnYkF5ZtB8wQy8KnskuWQS3Yr1wQ0:*****
@@ -125,8 +130,7 @@ Hash.Name........: sha512crypt $6$, SHA512 (Unix)
 Hash.Target......: $6$GQXVvW4EuM$ehD6jWiMsfNorxy5SINsgdlxmAEl3.yif0/c3...Yr1wQ0
 Time.Started.....: Mon Nov  1 04:25:58 2021 (10 secs)
 Time.Estimated...: Mon Nov  1 04:26:08 2021 (0 secs)
-
-`
+```
 
 **4. Bored of this yet? Crack this hash: b6b0d451bbf6fed658659a9e7e5598fe		hint: Try online, rockyou isn't always enough.**
 	- using online [tool](https://crackstation.net) we get our last answer for this task.
@@ -143,6 +147,7 @@ Time.Estimated...: Mon Nov  1 04:26:08 2021 (0 secs)
 	
 **2. What's the hashcat mode number for HMAC-SHA512 (key = $pass)?**
 	- we can find it easily by looking in hashcat help page
-`
+
+```
 hashcat -h | grep HMAC-SHA512
-`
+```
