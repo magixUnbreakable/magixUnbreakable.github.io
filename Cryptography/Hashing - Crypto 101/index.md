@@ -1,43 +1,14 @@
-## Welcome to GitHub Pages
-
-You can use the [editor on GitHub](https://github.com/magixUnbreakable/magixUnbreakable.github.io/edit/main/index.md) to maintain and preview the content for your website in Markdown files.
-
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
-
-### Markdown
-
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
 
 # Hashing - Crypto 101
-##   https://tryhackme.com/room/hashingcrypto101
-##   create by: magixUnbreakable
-##   creation date: 1.11.2021
+   https://tryhackme.com/room/hashingcrypto101
+   created by: magixUnbreakable
+   creation date: 1.11.2021
 
 ### TASK 3: USES FOR HASHING
-	2 main purposes
+2 main purposes
 	- verify integrity of data
 	- verifying passwords
-	RAINBOW TABLE
+RAINBOW TABLE
 	- lookup table of hashes to plaintexts, so you can quickly find out what password a user had just from the hash
 	
 **_QUESTIONS:_**
@@ -69,8 +40,10 @@ For more details see [GitHub Flavored Markdown](https://guides.github.com/featur
 $ cat hash1.hash 
 $2a$06$7yoU3Ng8dHTXphAg913cyO6Bjs3K5lBnwq5FJyA6d01pMSrddr1ZG
 ```
-	- we know from previous tasks that "$2a$" is bcrypt()
-	- let's indentifie the hash mode we would liek to use
+
+- we know from previous tasks that "$2a$" is bcrypt()
+- let's indentifie the hash mode we would liek to use
+
 ```
 $ hashcat -h | grep bcrypt
 3200 | bcrypt $2*$, Blowfish (Unix)                     | Operating System
@@ -81,9 +54,9 @@ $ hashcat -h | grep bcrypt
 $ hashcat -m 3200 hash1.hash /usr/share/wordlists/rockyou.txt
 ```
 
-- -m 					= hash type
-- hash1.hash  				= file where i stored the hash
-- /usr/share/wordlists/rockyou.txt	= my stored rocklist.txt
+- -m = hash type
+- hash1.hash = file where i stored the hash
+- /usr/share/wordlists/rockyou.txt = my stored rocklist.txt
 
 ```
 $2a$06$7yoU3Ng8dHTXphAg913cyO6Bjs3K5lBnwq5FJyA6d01pMSrddr1ZG:*****
@@ -96,13 +69,15 @@ Time.Started.....: Mon Nov  1 04:01:02 2021 (17 secs)
 Time.Estimated...: Mon Nov  1 04:01:19 2021 (0 secs)
 ```
 
+
 **2. Crack this hash: 9eb7ee7f551d2f0ac684981bd1f1e2fa4a37590199636753efe614d4db30e8e1	hint: SHA2-256**
-	- 1st let's check online tools for crack hashes i.e.: [crackstation](https://crackstation.net)
-	- which give us answer
-	
+- 1st let's check online tools for crack hashes i.e.: [crackstation](https://crackstation.net)
+- which give us answer
+
+
 **3. Crack this hash: $6$GQXVvW4EuM$ehD6jWiMsfNorxy5SINsgdlxmAEl3.yif0/c3NqzGLa0P.S7KRDYjycw5bnYkF5ZtB8wQy8KnskuWQS3Yr1wQ0**
-	- start of the hash $6$ indicate that this is SHA 512
-	- using hashcat, we find mode to use
+- start of the hash $6$ indicate that this is SHA 512
+- using hashcat, we find mode to use
 
 ```
 hashcat -h | grep sha512
@@ -143,10 +118,11 @@ Time.Estimated...: Mon Nov  1 04:26:08 2021 (0 secs)
 **_QUESTIONS:_**
 **1. What's the SHA1 sum for the amd64 Kali 2019.4 ISO? http://old.kali.org/kali-images/kali-2019.4/**
 
-	- navigate to provided [link](http://old.kali.org/kali-images/kali-2019.4/SHA1SUMS) to retrieve our flag
+- navigate to provided [link](http://old.kali.org/kali-images/kali-2019.4/SHA1SUMS) to retrieve our flag
+	
 	
 **2. What's the hashcat mode number for HMAC-SHA512 (key = $pass)?**
-	- we can find it easily by looking in hashcat help page
+- we can find it easily by looking in hashcat help page
 
 ```
 hashcat -h | grep HMAC-SHA512
