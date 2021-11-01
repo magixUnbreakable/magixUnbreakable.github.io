@@ -1,7 +1,7 @@
 
 # Hashing - Crypto 101
    https://tryhackme.com/room/hashingcrypto101
-   created by: magixUnbreakable
+   _created by: magixUnbreakable_
    creation date: 1.11.2021
 
 ### TASK 3: USES FOR HASHING
@@ -12,6 +12,7 @@ RAINBOW TABLE
 	- lookup table of hashes to plaintexts, so you can quickly find out what password a user had just from the hash
 	
 **_QUESTIONS:_**
+
 **1. Crack the hash "d0199f51d2728db6011945145a1b607a" using the rainbow table manually.**
 	- look provided hash in example table in this task.
 
@@ -20,6 +21,7 @@ RAINBOW TABLE
   
 ### TASK 4: RECOGNISING PASSWORD HASHES 
 **_QUESTIONS:_**
+
 **1. How many rounds does sha512crypt ($6$) use by default?**
 	- reading [man page](https://man7.org/linux/man-pages/man5/login.defs.5.html) is quite helpful
 
@@ -32,6 +34,7 @@ RAINBOW TABLE
 	
 ### TASK 5: PASSWORD CRACKING
 **_QUESTIONS:_**
+
 **1. Crack this hash: $2a$06$7yoU3Ng8dHTXphAg913cyO6Bjs3K5lBnwq5FJyA6d01pMSrddr1ZG**
 	- for this hash I'm gona use _hashcat_
 	- stored this hash in simple text file on my attack machine:
@@ -81,6 +84,11 @@ Time.Estimated...: Mon Nov  1 04:01:19 2021 (0 secs)
 
 ```
 hashcat -h | grep sha512
+```
+
+result:
+
+```
   21000 | BitShares v0.x - sha512(sha512_bin(pass))        | Raw Hash
    1710 | sha512($pass.$salt)                              | Raw Hash, Salted and/or Iterated
    1720 | sha512($salt.$pass)                              | Raw Hash, Salted and/or Iterated
@@ -96,7 +104,11 @@ hashcat -h | grep sha512
 
 ```
 hashcat -m 1800 hash3.hash /usr/share/wordlists/rockyou.txt
+```
 
+result:
+
+```
 $6$GQXVvW4EuM$ehD6jWiMsfNorxy5SINsgdlxmAEl3.yif0/c3NqzGLa0P.S7KRDYjycw5bnYkF5ZtB8wQy8KnskuWQS3Yr1wQ0:*****
                                                  
 Session..........: hashcat
@@ -107,15 +119,19 @@ Time.Started.....: Mon Nov  1 04:25:58 2021 (10 secs)
 Time.Estimated...: Mon Nov  1 04:26:08 2021 (0 secs)
 ```
 
-**4. Bored of this yet? Crack this hash: b6b0d451bbf6fed658659a9e7e5598fe		hint: Try online, rockyou isn't always enough.**
-	- using online [tool](https://crackstation.net) we get our last answer for this task.
+**4. Bored of this yet? Crack this hash: b6b0d451bbf6fed658659a9e7e5598fe		
+hint: Try online, rockyou isn't always enough.**
+
+- using online [tool](https://crackstation.net) we get our last answer for this task.
 	
 ### TASK 6: HASHING FOR INTEGRITY CHECKING
-	- hash before send file and hash after received file => check integrity, even if one bit was changed hashes will not match.
-	HMACS
-	- verify the authenticity and integrity of data
+
+- hash before send file and hash after received file => check integrity, even if one bit was changed hashes will not match.
+HMACS
+- verify the authenticity and integrity of data
 	
 **_QUESTIONS:_**
+
 **1. What's the SHA1 sum for the amd64 Kali 2019.4 ISO? http://old.kali.org/kali-images/kali-2019.4/**
 
 - navigate to provided [link](http://old.kali.org/kali-images/kali-2019.4/SHA1SUMS) to retrieve our flag
@@ -124,6 +140,9 @@ Time.Estimated...: Mon Nov  1 04:26:08 2021 (0 secs)
 **2. What's the hashcat mode number for HMAC-SHA512 (key = $pass)?**
 - we can find it easily by looking in hashcat help page
 
+
 ```
 hashcat -h | grep HMAC-SHA512
 ```
+
+Happy hacking
