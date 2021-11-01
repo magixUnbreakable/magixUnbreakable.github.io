@@ -6,38 +6,46 @@
 
 ### TASK 3: USES FOR HASHING
 2 main purposes
-	- verify integrity of data
-	- verifying passwords
+
+- verify integrity of data
+- verifying passwords
+
 RAINBOW TABLE
 	- lookup table of hashes to plaintexts, so you can quickly find out what password a user had just from the hash
 	
 **_QUESTIONS:_**
 
 **1. Crack the hash "d0199f51d2728db6011945145a1b607a" using the rainbow table manually.**
-	- look provided hash in example table in this task.
+
+- look provided hash in example table in this task.
 
 **2. Crack the hash "5b31f93c09ad1d065c0491b764d04933" using online tools**
-	- I used this [link](https://hashes.com/en/decrypt/hash)
+
+- I used this [link](https://hashes.com/en/decrypt/hash)
   
 ### TASK 4: RECOGNISING PASSWORD HASHES 
 **_QUESTIONS:_**
 
 **1. How many rounds does sha512crypt ($6$) use by default?**
-	- reading [man page](https://man7.org/linux/man-pages/man5/login.defs.5.html) is quite helpful
+
+- reading [man page](https://man7.org/linux/man-pages/man5/login.defs.5.html) is quite helpful
 
 **2. What's the hashcat example hash (from the website) for Citrix Netscaler hashes?**
-	- check provided hashcat [link](https://hashcat.net/wiki/doku.php?id=example_hashes)
-	- look for "Citrix Netscaler"
+
+- check provided hashcat [link](https://hashcat.net/wiki/doku.php?id=example_hashes)
+- look for "Citrix Netscaler"
 
 **3. How long is a Windows NTLM hash, in characters?**
-	- quick google search give us answer
+
+- quick google search give us answer
 	
 ### TASK 5: PASSWORD CRACKING
 **_QUESTIONS:_**
 
 **1. Crack this hash: $2a$06$7yoU3Ng8dHTXphAg913cyO6Bjs3K5lBnwq5FJyA6d01pMSrddr1ZG**
-	- for this hash I'm gona use _hashcat_
-	- stored this hash in simple text file on my attack machine:
+
+- for this hash I'm gona use _hashcat_
+- stored this hash in simple text file on my attack machine:
 	
 ```
 $ cat hash1.hash 
@@ -144,5 +152,12 @@ HMACS
 ```
 hashcat -h | grep HMAC-SHA512
 ```
+
+
+
+
+
+
+
 
 Happy hacking
